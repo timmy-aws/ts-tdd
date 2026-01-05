@@ -21,6 +21,15 @@ class NoteService {
     return [...this.notes]
   }
 
+  getSingleById(id: string): Note | undefined{
+
+    const note = this.notes.find(n => n.id === id)
+
+  return note
+
+    
+  }
+
   update(id: string, title: string, body: string): Note {
     const note = this.notes.find(n => n.id === id)
     if (!note) throw new Error('Note not found')

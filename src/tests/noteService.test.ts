@@ -23,6 +23,17 @@ describe('NoteService', () => {
     expect(notes.length).toBe(2)
   })
 
+  it('gets a note', () => {
+    const created = service.create('Title', 'Body')
+    const found = service.getSingleById(created.id)
+    expect(found).toEqual(created)
+  })
+
+  it('Returns undefined when note does not exist', () => {
+    
+    expect(service.getSingleById('missing')).toBeUndefined
+  })
+
   it('updates a note', () => {
     const note = service.create('Old', 'Body')
     const updated = service.update(note.id, 'New', 'Body2')
