@@ -1,4 +1,4 @@
-const createApp = require('./app.ts')
+const createApp = require('./app')
 
 const PORT = process.env.PORT ?? 3000
 
