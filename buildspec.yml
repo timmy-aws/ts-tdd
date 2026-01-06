@@ -2,28 +2,23 @@ version: 0.2
 
 phases:
   install:
+    runtime-versions:
+      nodejs: 18
     commands:
-      - echo nothing in pre-build phase
+      - echo Installing dependencies
+      - npm ci
+
   pre_build:
     commands:
-      - echo Installing source NPM dependencies...
-      - npm install
+      - echo Running tests
+      - npm test
+
   build:
     commands:
-      - echo Build started on `date`
-      - echo Compiling the Node.js code
-      - npm run test
-  post_build:
-    commands:
-      - echo $CODEBUILD_BUILD_SUCCEEDING
-      - |
-        if [ "$CODEBUILD_BUILD_SUCCEEDING" -eq 0 ]; 
-        then exit 1; 
-        else 
-        echo "post_build execution continues" 
-        fi
-      - echo nothing in post-build phase
-      - zip -r node-app.zip .
+      - echo Building application
+      - npm run build
+
 artifacts:
   files:
-    - node-app.zip
+    - "**/*"
+  discard-paths: no
