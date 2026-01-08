@@ -8,7 +8,7 @@ function createApp() {
 //   app.use('/notes', notesRouter)
 
 app.get('/', (req: any, res: any) => {
-  res.send('Hello World!')
+  res.send('Hello World!!')
 })
 
   return app
